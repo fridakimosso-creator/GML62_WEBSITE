@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -377,19 +377,47 @@
             
           
         <!-- RIGHT SIDE -->
-        <form id="contactForm" class="contact-form">
-    
-          <input name="name" type="text" placeholder="Full Name" required>
-    
-          <input name="email" type="email" placeholder="Email Address" required>
-    
-          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-    
-          <button type="submit">Send Message</button>
-    
-          <p id="formStatus"></p>
-    
-        </form>
+       <!-- Registration Section -->
+<section class="registration-section">
+  <div class="form-container">
+    <h2>Register With Us</h2>
+
+    <form id="registerForm">
+
+      <div class="input-group">
+        <input type="text" id="name" required>
+        <label>Full Name</label>
+      </div>
+
+      <div class="input-group">
+        <input type="email" id="email" required>
+        <label>Email Address</label>
+      </div>
+
+      <div class="input-group">
+        <input type="password" id="password" required>
+        <label>Password</label>
+      </div>
+      <div class="input-group">
+        <input type="phone" id="phone"required>
+        <label>Phone Number</label>
+      </div>
+
+      <div class="input-group">
+        <textarea id="message" rows="4" required></textarea>
+        <label>Your Message</label>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        Send Registration
+      </button>
+
+      <p id="status"></p>
+
+    </form>
+  </div>
+</section>
+
     
       </div>
     

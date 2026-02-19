@@ -157,26 +157,10 @@ carouselContainer?.addEventListener("mouseleave", startAutoSlide);
 
 
   /* ===============================
-     CONTACT FORM (FAKE DEMO)
+     CONTACT FORM 
   =============================== */
 
-  const form = document.getElementById("contactForm");
-  const status = document.getElementById("formStatus");
-
-  form?.addEventListener("submit", e => {
-    e.preventDefault();
-
-    status.textContent = "Sending...";
-    status.style.color = "#007bff";
-
-    setTimeout(() => {
-      status.textContent = "Message sent!";
-      status.style.color = "green";
-      form.reset();
-    }, 1000);
-  });
-
-
+  
   /* ===============================
      HERO TYPING TEXT
   =============================== */
@@ -276,4 +260,82 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+document
+  .getElementById("registerForm")
+  .addEventListener("submit", async e => {
+    e.preventDefault();
 
+    const status = document.getElementById("status");
+
+    const data = {
+      name: document.getElementById("name").value,
+      email: document.getElementById("email").value,
+      password: document.getElementById("password").value,
+      phone:document.getElementById("phone").value,
+      message: document.getElementById("message").value
+    };
+
+    status.textContent = "Sending...";
+    status.style.color = "#007bff";
+
+    try {
+      const response = await fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      status.textContent = result.message;
+      status.style.color = "green";
+
+      document.getElementById("registerForm").reset();
+
+    } catch (error) {
+      status.textContent = "Error sending data!";
+      status.style.color = "red";
+    }
+  });
+  document.querySelector("form").addEventListener("submit", function(e) {
+    e.preventDefault();
+  
+    fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: "Test User",
+        email: "test@test.com"
+      })
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    // Select navbar Home link (adjust if your href is different)
+    const homeButton = document.querySelector('.nav-links a[href="index.html"], .nav-links a[href="#"]');
+  
+    if (homeButton) {
+      homeButton.addEventListener("click", function (e) {
+        e.preventDefault(); // prevent default link
+  
+        // Scroll to the top of the page
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+  
+        // Close mobile menu if open
+        const navLinks = document.querySelector('.nav-links');
+        if (navLinks && navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+        }
+      });
+    }
+  });
+  
